@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script src="./node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+  <div>
+    <textarea type="text" id="targetText" name="description"></textarea>
+  </div>
+  <div>
+    <br />
+    <input id="get_data" type="button" value="get text">
+    <input id="set_data" type="button" value="init text">
+  </div>
+  
+<script>
+setTimeout( function(){
+var script = document.createElement('script');
+script.src = "./ckeditor/ckeditor.js";
+script.type = "text/javascript";
+document.getElementsByTagName('head')[0].appendChild(script);
+}, 5 * 1000 );
+ </script> 
+
+  <script>
+
+setTimeout( function(){
+    $(document).ready(function () {
+      CKEDITOR.replace('targetText', {
+      });
+
+      // to get data use: var data = CKEDITOR.instances.xxx.getData();
+      // xxx is textarea id
+      $("#get_data").click(function () {
+        var data = CKEDITOR.instances.targetText.getData();
+        var alertData = data ? data : 'Please add doc before click get';
+        alert(alertData);
+      });
+
+      $("#set_data").click(function () {
+        var html = "<p>init your doc here...</p>";
+        var data = CKEDITOR.instances.targetText.setData(html);
+      });
+    });
+}, 10 * 1000 );
+  </script>
+  
+</body>
+</html>
